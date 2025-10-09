@@ -1,20 +1,19 @@
 package org.example;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.Setter;
 
+@AllArgsConstructor
 public class Transaction {
-    @Getter private String date;
-    @Getter private double amount;
-    @Getter private String description;
+    @Getter
+    private String date;
+    @Getter
+    @Setter
+    private double amount;
+    @Getter
+    private String description;
 
-    public Transaction(String date, double amount, String description) {
-        this.date = date;
-        this.amount = amount;
-        this.description = description;
-    }
-    // Getters
-    // Setters
-    // toString метод для зручності виводу
     @Override
     public String toString() {
         return "Transaction{" +
