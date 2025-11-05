@@ -48,7 +48,7 @@ public abstract class TransactionAnalyzer {
             String transactionMonthYear = date.format(DateTimeFormatter.ofPattern("MM-yyyy"));
             var dateA = transactionMonthYear.split("-");
             var date1 = monthYear1.split("-");
-            var date2 = monthYear1.split("-");
+            var date2 = monthYear2.split("-");
             if(!entered && ((Integer.parseInt(dateA[1])>Integer.parseInt(date1[1]) ||
                     ((Integer.parseInt(dateA[1])==Integer.parseInt(date1[1]) &&
                             (Integer.parseInt(dateA[0])<=Integer.parseInt(date1[0]))))))) {
