@@ -23,6 +23,6 @@ public class Main {
 
         System.out.println("-----------------------------------------");
         List<Transaction> transactionsByPeriod = TransactionAnalyzer.findByPeriod(transactions,"01-01-2024","01-03-2024");
-        TransactionReportGenerator.printTopAndLowInPeriod(transactionsByPeriod);
+        TransactionReportGenerator.printTopAndLow(transactionsByPeriod);
     }
 }

@@ -79,4 +79,17 @@ public class TransactionAnalyzerTest {
         Assertions.assertEquals(0, res3, "Кількість транзакцій за березень неправильна");
     }
 
+    @Test
+    public void testCSVReader() {
+        String filePath = "https://informer.com.ua/dut/java/pr2.csv";
+        List<Transaction> transactions = TransactionCSVReader.readTransactions(filePath);
+
+        Assertions.assertNotNull(transactions,"Transactions is null");
+        Assertions.assertFalse(transactions.isEmpty(),"Transactions is empty");
+
+        Transaction transaction = transactions.get(0);
+        Assertions.assertNotNull(transaction,"Transaction is null");
+        Assertions.assertNotNull(transaction.getAmount(),"Amount is null");
+        Assertions.assertNotNull(transaction.getDate(),"Date is null");
+    }
 }

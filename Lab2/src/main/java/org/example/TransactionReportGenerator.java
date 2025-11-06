@@ -21,9 +21,6 @@ public abstract class TransactionReportGenerator {
         }
     }
 
-    public static void printTopAndLowExpensesReport(List<Transaction> topAndLowExpenses) {
-
-    }
 @AllArgsConstructor
     static class Double{
         public double amount = 0;
@@ -62,7 +59,7 @@ public abstract class TransactionReportGenerator {
         }
     }
 
-    public static void printTopAndLowInPeriod(List<Transaction> transactions) {
+    public static void printTopAndLow(List<Transaction> transactions) {
         int max = 0;
         int min = transactions.size()-1;
 
