@@ -40,30 +40,19 @@ public abstract class TransactionAnalyzer {
     }
 
 
-    public static List<Transaction> transactionsByPeriod(List<Transaction> transactions, String monthYear1, String monthYear2) {
-        List<Transaction> result = new ArrayList<>();
-        boolean entered = false;
-        for (Transaction transaction : transactions) {
-            LocalDate date = LocalDate.parse(transaction.getDate(), dateFormatter);
-            String transactionMonthYear = date.format(DateTimeFormatter.ofPattern("MM-yyyy"));
-            var dateA = transactionMonthYear.split("-");
-            var date1 = monthYear1.split("-");
-            var date2 = monthYear2.split("-");
-            if(!entered && ((Integer.parseInt(dateA[1])>Integer.parseInt(date1[1]) ||
-                    ((Integer.parseInt(dateA[1])==Integer.parseInt(date1[1]) &&
-                            (Integer.parseInt(dateA[0])<=Integer.parseInt(date1[0]))))))) {
-                entered = true;
-            }
-            if(entered && ((Integer.parseInt(dateA[1])<Integer.parseInt(date2[1]) ||
-                    ((Integer.parseInt(dateA[1])==Integer.parseInt(date2[1]) &&
-                            (Integer.parseInt(dateA[0])>Integer.parseInt(date2[0]))))))) {
-                entered = false;
-            }
-            if(entered){
-                result.add(transaction);
-            }
-        }
-        return result;
+    public static List<Transaction> findByPeriod(List<Transaction> transactions, String beginDate, String endDate) {
+        LocalDate begin = LocalDate.parse(beginDate, dateFormatter);
+        LocalDate end = LocalDate.parse(endDate, dateFormatter);
+        return transactions.stream()
+                .filter(t -> t.getAmount() < 0)
+                .filter(t -> {
+                    LocalDate tempDate = LocalDate.parse(t.getDate(), dateFormatter);
+                    if (tempDate.isAfter(begin) && tempDate.isBefore(end) || tempDate.isEqual(begin) || tempDate.isEqual(end)) {
+                        return true;
+                    }
+                    return false;
+                })
+                .collect(Collectors.toList());
     }
 
     // Тут будуть інші методи для аналізу транзакцій
