@@ -1,6 +1,7 @@
 package org.example;
 
 import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
@@ -15,6 +16,7 @@ public abstract class TransactionCSVReader {
             URL url = new URL(filePath);
             // Відкриття потоку для читання з URL
             try (BufferedReader br = new BufferedReader(new InputStreamReader(url.openStream(), "UTF-8"))) {
+            //try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
                 String line;
                 while ((line = br.readLine()) != null) {
                     String[] values = line.split(",");
